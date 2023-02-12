@@ -21,7 +21,7 @@ public class Address {
     @Column(length = 2)
     private String state;
     @Column(length = 8)
-    private int CEP;
+    private int cep;
     private boolean isPrimaryAddress;
     @ManyToOne
     @JoinColumn(name = "contact_id", nullable = false)
