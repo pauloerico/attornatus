@@ -3,7 +3,7 @@ package com.attornatus.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Data
@@ -14,5 +14,5 @@ public class Contact {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String name;
-    private LocalDateTime dateOfBirth;
+    private LocalDate dateOfBirth;
 }
