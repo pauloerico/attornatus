@@ -13,8 +13,6 @@ public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    @Column
     private String name;
-    @Column
     private LocalDateTime dateOfBirth;
 }
