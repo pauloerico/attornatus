@@ -34,6 +34,15 @@ public class AddressController {
         return new ResponseEntity<>(addresses, HttpStatus.OK);
     }
 
+    @GetMapping("/contacts/{contactId}/primary-address")
+    public ResponseEntity<List<Address>> getContactPrimaryAddress(@PathVariable String contactId){
+        if (!contactRepository.existsById(contactId)){
+            throw new EntityNotFoundException("Contact not found with id = " + contactId);
+        }
+        List<Address> primaryAddresses = addressRepository.findByContactIdAndPrimaryAddress(contactId, true);
+        return new ResponseEntity<>(primaryAddresses, HttpStatus.OK);
+    }
+
     @PostMapping("/contacts/{contactId}/addresses")
     public ResponseEntity<Address> newAddress(@PathVariable String contactId, @RequestBody @Valid AddressDto addressDto){
         Contact contact = contactRepository.findById(contactId)

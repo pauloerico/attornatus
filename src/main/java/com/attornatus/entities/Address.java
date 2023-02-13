@@ -22,7 +22,7 @@ public class Address {
     private String state;
     @Column(length = 8)
     private int cep;
-    private boolean isPrimaryAddress;
+    private boolean primaryAddress;
     @ManyToOne
     @JoinColumn(name = "contact_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
