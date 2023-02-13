@@ -23,7 +23,7 @@ public class Address {
     @Column(length = 8)
     private int cep;
     private boolean primaryAddress;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "contact_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
