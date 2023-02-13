@@ -1,14 +1,8 @@
 package com.attornatus.gateways.dtos;
 
-import com.attornatus.entities.Contact;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 @Data
 public class AddressDto {
@@ -19,9 +13,11 @@ public class AddressDto {
     @NotBlank
     private String city;
     @NotBlank
+    @Size(min = 2, max = 2)
     private String state;
     @NotBlank
+    @Size(min = 2, max = 2)
     private int cep;
     @NotBlank
-    private boolean isPrimaryAddress;
+    private boolean primaryAddress;
 }
