@@ -1,23 +1,23 @@
 package com.attornatus.gateways.dtos;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 
 @Data
 public class AddressDto {
     @NotBlank
     private String street;
-    @NotBlank
+    @NotNull
     private int number;
     @NotBlank
     private String city;
     @NotBlank
     @Size(min = 2, max = 2)
     private String state;
-    @NotBlank
-    @Size(min = 2, max = 2)
+    @NotNull
+    @Min(value = 10000000)
+    @Max(value = 99999999)
     private int cep;
-    @NotBlank
+    @NotNull
     private boolean primaryAddress;
 }

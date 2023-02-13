@@ -1,6 +1,7 @@
 package com.attornatus.gateways.dtos;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -9,6 +10,6 @@ import java.time.LocalDate;
 public class ContactDto {
     @NotBlank
     private String name;
-    @NotBlank
+    @NotNull
     private LocalDate dateOfBirth;
 }

@@ -5,9 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Repository
-public interface AddressRepository extends JpaRepository<Address, String> {
-    List<Address> findByContactId(String contactId);
-    List<Address> findByContactIdAndPrimaryAddress(String contactId, boolean primaryAddress);
+public interface AddressRepository extends JpaRepository<Address, UUID> {
+    List<Address> findByContactId(UUID contactId);
+    List<Address> findByContactIdAndPrimaryAddress(UUID contactId, boolean primaryAddress);
 }

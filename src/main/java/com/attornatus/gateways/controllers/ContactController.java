@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/contacts")
@@ -40,14 +41,14 @@ public class ContactController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Contact> getContactById(@PathVariable String id){
+    public ResponseEntity<Contact> getContactById(@PathVariable UUID id){
         Contact contact = contactRepository.findById(id)
                 .orElseThrow(()->new EntityNotFoundException("Contact not found with id = " + id));
         return new ResponseEntity<>(contact, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Contact> editContact(@PathVariable String id, @RequestBody @Valid ContactDto contactDto){
+    public ResponseEntity<Contact> editContact(@PathVariable UUID id, @RequestBody @Valid ContactDto contactDto){
         Contact contact = contactRepository.findById(id)
                 .orElseThrow(()->new EntityNotFoundException("Contact not found with id = " + id));
         BeanUtils.copyProperties(contactDto, contact);
@@ -56,7 +57,7 @@ public class ContactController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<HttpStatus> deleteContact(@PathVariable String id){
+    public ResponseEntity<HttpStatus> deleteContact(@PathVariable UUID id){
         contactRepository.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

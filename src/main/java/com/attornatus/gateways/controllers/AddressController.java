@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class AddressController {
@@ -26,25 +27,31 @@ public class AddressController {
     }
 
     @GetMapping("/contacts/{contactId}/addresses")
-    public ResponseEntity<List<Address>> getAllContactAddresses(@PathVariable String contactId){
+    public ResponseEntity<List<Address>> getAllContactAddresses(@PathVariable UUID contactId){
         if (!contactRepository.existsById(contactId)){
             throw new EntityNotFoundException("Contact not found with id = " + contactId);
         }
         List<Address> addresses = addressRepository.findByContactId(contactId);
+        if (addresses.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
         return new ResponseEntity<>(addresses, HttpStatus.OK);
     }
 
     @GetMapping("/contacts/{contactId}/primary-address")
-    public ResponseEntity<List<Address>> getContactPrimaryAddress(@PathVariable String contactId){
+    public ResponseEntity<List<Address>> getContactPrimaryAddress(@PathVariable UUID contactId){
         if (!contactRepository.existsById(contactId)){
             throw new EntityNotFoundException("Contact not found with id = " + contactId);
         }
         List<Address> primaryAddresses = addressRepository.findByContactIdAndPrimaryAddress(contactId, true);
+        if (primaryAddresses.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
         return new ResponseEntity<>(primaryAddresses, HttpStatus.OK);
     }
 
     @PostMapping("/contacts/{contactId}/addresses")
-    public ResponseEntity<Address> newAddress(@PathVariable String contactId, @RequestBody @Valid AddressDto addressDto){
+    public ResponseEntity<Address> newAddress(@PathVariable UUID contactId, @RequestBody @Valid AddressDto addressDto){
         Contact contact = contactRepository.findById(contactId)
                 .orElseThrow(()->new EntityNotFoundException("Contact not found with id = " + contactId));
         Address address = new Address();
@@ -55,7 +62,7 @@ public class AddressController {
     }
 
     @PutMapping("/addresses/{id}")
-    public ResponseEntity<Address> editAddress(@PathVariable String id, @RequestBody @Valid AddressDto addressDto){
+    public ResponseEntity<Address> editAddress(@PathVariable UUID id, @RequestBody @Valid AddressDto addressDto){
         Address address = addressRepository.findById(id)
                 .orElseThrow(()->new EntityNotFoundException("Address not found with id = " + id));
         BeanUtils.copyProperties(addressDto, address);
@@ -64,7 +71,7 @@ public class AddressController {
     }
 
     @DeleteMapping("/addresses/{id}")
-    public ResponseEntity<HttpStatus> deleteAddress(@PathVariable String id){
+    public ResponseEntity<HttpStatus> deleteAddress(@PathVariable UUID id){
         addressRepository.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
