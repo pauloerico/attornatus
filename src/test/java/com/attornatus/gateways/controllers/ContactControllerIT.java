@@ -36,7 +36,7 @@ public class ContactControllerIT {
     @Test
     public void whenNewContactThenContactCreated(){
         ContactDto contactDto = new ContactDto();
-        LocalDate date = LocalDate.of(2020,01,01);
+        LocalDate date = LocalDate.of(2020, 1,1);
         contactDto.setName("Fulano");
         contactDto.setDateOfBirth(date);
 
@@ -50,7 +50,7 @@ public class ContactControllerIT {
     @Test
     public void whenDeleteContactThenOk(){
         ContactDto contactDto = new ContactDto();
-        LocalDate date = LocalDate.of(2020,01,01);
+        LocalDate date = LocalDate.of(2020,1,1);
         contactDto.setName("Fulano");
         contactDto.setDateOfBirth(date);
 
@@ -66,12 +66,12 @@ public class ContactControllerIT {
     @Test
     public void whenEditContactThenEdited(){
         ContactDto contactDto1 = new ContactDto();
-        LocalDate date1 = LocalDate.of(2021,01,01);
+        LocalDate date1 = LocalDate.of(2021,1,1);
         contactDto1.setName("Fulano");
         contactDto1.setDateOfBirth(date1);
 
         ContactDto contactDto2 = new ContactDto();
-        LocalDate date2 = LocalDate.of(2022,02,02);
+        LocalDate date2 = LocalDate.of(2022,2,2);
         contactDto2.setName("Ciclano");
         contactDto2.setDateOfBirth(date2);
 
