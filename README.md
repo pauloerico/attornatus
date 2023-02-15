@@ -80,7 +80,7 @@ GET http://localhost:8080/contacts/{contactId}
 ```http request
 PUT http://localhost:8080/contacts/{contactId}
 ```
-Deleta um contato pelo seu ID
+* Deleta um contato pelo seu ID
 ```http request
 DELETE http://localhost:8080/contacts/{contactId}
 ```
