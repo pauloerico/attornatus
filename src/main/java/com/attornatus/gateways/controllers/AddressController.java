@@ -5,7 +5,6 @@ import com.attornatus.entities.Contact;
 import com.attornatus.gateways.dtos.AddressDto;
 import com.attornatus.gateways.repositories.AddressRepository;
 import com.attornatus.gateways.repositories.ContactRepository;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
@@ -44,7 +43,7 @@ public class AddressController {
         if (!contactRepository.existsById(contactId)){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Contact not found with id = " + contactId);
         }
-        List<Address> primaryAddresses = addressRepository.findByContactIdAndPrimaryAddress(contactId, true);
+        List<Address> primaryAddresses = addressRepository.findByContactIdAndPrimaryAddressIsTrue(contactId);
         if (primaryAddresses.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

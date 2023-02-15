@@ -10,5 +10,5 @@ import java.util.UUID;
 @Repository
 public interface AddressRepository extends JpaRepository<Address, UUID> {
     List<Address> findByContactId(UUID contactId);
-    List<Address> findByContactIdAndPrimaryAddress(UUID contactId, boolean primaryAddress);
+    List<Address> findByContactIdAndPrimaryAddressIsTrue(UUID contactId);
 }
