@@ -60,7 +60,7 @@ os endereços de todas as pessoas.
 git clone https://github.com/pauloerico/attornatus
 ```
 * Abra e execute na sua IDE de preferência.
-* Use sua plataforma de preferência para testar os endpoints.
+* Use sua plataforma de favorita para testar os endpoints.
 
 ### Endpoints
 #### Contact
